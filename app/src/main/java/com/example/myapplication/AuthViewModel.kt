@@ -10,7 +10,6 @@ class AuthViewModel : ViewModel() {
     val isLoginFailedLiveData = MutableLiveData<Unit>()
     val showProgressLiveData = MutableLiveData<Unit>()
     val hideProgressLiveData = MutableLiveData<Unit>()
-    val titleLiveData = MutableLiveData<String>()
 
 
     private val authModel = AuthModel()
@@ -20,12 +19,13 @@ class AuthViewModel : ViewModel() {
 
         val isSuccess = authModel.onLoginClicked(email, password)
 
-
+        showProgressLiveData.postValue(Unit)
         if (isSuccess) {
             isLoginFailedLiveData.postValue(Unit)
         } else {
             isLoginFailedLiveData.postValue(Unit)
         }
+        hideProgressLiveData.postValue(Unit)
 
     }
 }

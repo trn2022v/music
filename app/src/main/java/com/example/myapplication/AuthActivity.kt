@@ -17,8 +17,7 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var progress: ProgressBar
     private lateinit var overlay: FrameLayout
     private lateinit var viewModel: AuthViewModel
-    private var titleText: AppCompatTextView? = null
-    lateinit var  buttonLogin: AppCompatButton
+    lateinit var buttonLogin: AppCompatButton
     lateinit var loginField: TextInputLayout
     lateinit var passwordField: TextInputLayout
 
@@ -26,6 +25,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
 
@@ -34,7 +34,6 @@ class AuthActivity : AppCompatActivity() {
         passwordField = findViewById(R.id.input_layout_password)
         overlay = findViewById(R.id.overlay_container)
         progress = findViewById(R.id.progress)
-        titleText = findViewById(R.id.test_text)
 
         buttonLogin.setOnClickListener {
             val emailText = loginField.editText?.text.toString()
@@ -59,10 +58,6 @@ class AuthActivity : AppCompatActivity() {
         viewModel.hideProgressLiveData.observe(this) {
             hideProgress()
         }
-        viewModel.titleLiveData.observe(this) { title ->
-            titleText?.text = title
-        }
-
     }
 
     private fun hideProgress() {
