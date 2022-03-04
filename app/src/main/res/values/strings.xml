@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="auth_login">Логин</string>
+    <string name="auth_reg">Регистрация</string>
     <string name="auth_password">Пароль</string>
     <string name="auth_save_credentials">Сохранить логин и пароль</string>
 </resources>

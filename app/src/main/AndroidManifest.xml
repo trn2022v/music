@@ -20,7 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.reg.SuccessActivity"
+            android:name=".ui.reg.RegActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.music.MusicActivity"
             android:exported="true"/>
     </application>
 

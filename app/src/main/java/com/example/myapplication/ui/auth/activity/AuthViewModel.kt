@@ -1,9 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.ui.auth.activity
 
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.ui.auth.AuthModel
+import com.example.myapplication.model.NetworkAuthServiceImpl
+import com.example.myapplication.model.LocalStorageModel
+import com.example.myapplication.model.NetworkAuthService
 
 class AuthViewModel : ViewModel() {
 
@@ -13,16 +15,19 @@ class AuthViewModel : ViewModel() {
     val hideProgressLiveData = MutableLiveData<Unit>()
 
 
-    private val authModel = AuthModel()
+    private val authModel: NetworkAuthService = NetworkAuthServiceImpl()
+    private val storageModel = LocalStorageModel()
 
 
     fun onLoginClicked(email: String, password: String) {
 
-        val isSuccess = authModel.onLoginClicked(email, password)
+        val token = authModel.onLoginClicked(email, password)
 
         showProgressLiveData.postValue(Unit)
-        if (isSuccess) {
+        if (token != null) {
+            storageModel.saveToken(token)
             isLoginSuccessLiveData.postValue(Unit)
+
         } else {
             isLoginFailedLiveData.postValue(Unit)
         }
