@@ -3,6 +3,7 @@ package com.example.myapplication
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.ui.auth.AuthModel
 
 class AuthViewModel : ViewModel() {
 

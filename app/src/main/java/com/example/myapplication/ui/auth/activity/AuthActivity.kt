@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.auth.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,11 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.AuthViewModel
+import com.example.myapplication.R
+import com.example.myapplication.ui.reg.SuccessActivity
 import com.google.android.material.textfield.TextInputLayout
 
 
