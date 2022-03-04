@@ -21,7 +21,7 @@ class AuthViewModel : ViewModel() {
 
         showProgressLiveData.postValue(Unit)
         if (isSuccess) {
-            isLoginFailedLiveData.postValue(Unit)
+            isLoginSuccessLiveData.postValue(Unit)
         } else {
             isLoginFailedLiveData.postValue(Unit)
         }

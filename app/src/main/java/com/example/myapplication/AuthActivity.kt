@@ -50,7 +50,7 @@ class AuthActivity : AppCompatActivity() {
             startActivity(intent)
         }
         viewModel.isLoginFailedLiveData.observe(this) {
-            Toast.makeText(this, "Чnо-то пошло не так", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Что-то пошло не так", Toast.LENGTH_SHORT).show()
         }
         viewModel.showProgressLiveData.observe(this) {
             showProgress()
