@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
+import com.example.myapplication.ui.music.MusicActivity
 import com.example.myapplication.ui.reg.RegActivity
 import com.google.android.material.textfield.TextInputLayout
 
@@ -40,17 +41,22 @@ class AuthActivity : AppCompatActivity() {
         progress = findViewById(R.id.progress)
 
 
+
         buttonLogin.setOnClickListener {
             val emailText = loginField.editText?.text.toString()
             val passwordText = passwordField.editText?.text.toString()
             viewModel.onLoginClicked(emailText, passwordText)
+        }
+        buttonReg.setOnClickListener {
+            val intent = Intent(this, RegActivity::class.java)
+            startActivity(intent)
         }
         subscribeOnLiveData()
     }
 
     private fun subscribeOnLiveData() {
         viewModel.isLoginSuccessLiveData.observe(this) {
-            val intent = Intent(this, RegActivity::class.java)
+            val intent = Intent(this, MusicActivity::class.java)
             startActivity(intent)
         }
         viewModel.isLoginFailedLiveData.observe(this) {

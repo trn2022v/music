@@ -1,4 +1,4 @@
-package com.example.myapplication.model
+package com.example.myapplication.model.network
 
 interface NetworkMusicService{
     fun getFavouriteMusic(): List<Any>
