@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.ui.music.MusicActivity
@@ -30,8 +31,7 @@ class AuthActivity : AppCompatActivity() {
         setContentView(R.layout.log_layout)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-
-
+        lifecycle.addObserver(viewModel)
 
         buttonLogin = findViewById(R.id.button_login)
         buttonReg = findViewById(R.id.button_reg)
@@ -40,7 +40,13 @@ class AuthActivity : AppCompatActivity() {
         overlay = findViewById(R.id.overlay_container)
         progress = findViewById(R.id.progress)
 
+        loginField.editText?.addTextChangedListener {
+            viewModel.emailLifeData.value = it.toString()
+        }
 
+        passwordField.editText?.addTextChangedListener {
+            viewModel.passwordLifeData.value = it.toString()
+        }
 
         buttonLogin.setOnClickListener {
             val emailText = loginField.editText?.text.toString()
@@ -51,8 +57,17 @@ class AuthActivity : AppCompatActivity() {
             val intent = Intent(this, RegActivity::class.java)
             startActivity(intent)
         }
+
         subscribeOnLiveData()
+        restoreValues()
     }
+
+    private fun restoreValues() {
+
+        loginField.editText?.setText(viewModel.emailLifeData.value ?: "")
+        passwordField.editText?.setText(viewModel.passwordLifeData.value ?: "")
+    }
+
 
     private fun subscribeOnLiveData() {
         viewModel.isLoginSuccessLiveData.observe(this) {
