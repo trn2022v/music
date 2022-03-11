@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.auth.activity
+package com.example.myapplication.ui.auth
 
 
 import androidx.lifecycle.*

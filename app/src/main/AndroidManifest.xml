@@ -11,7 +11,7 @@
         android:theme="@style/Theme.MyApplication">
 
         <activity
-            android:name=".ui.auth.activity.AuthActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.reg.RegActivity"
+            android:name=".ui.reg.activity.RegActivity"
             android:exported="true"/>
         <activity
-            android:name=".ui.music.MusicActivity"
+            android:name=".ui.music.activity.MusicActivity"
             android:exported="true"/>
     </application>
 
