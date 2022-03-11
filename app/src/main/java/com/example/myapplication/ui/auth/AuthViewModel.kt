@@ -7,7 +7,7 @@ import com.example.myapplication.model.storage.LocalStorageModel
 import com.example.myapplication.model.network.NetworkAuthService
 import com.example.myapplication.model.storage.UserStorage
 
-class AuthViewModel : ViewModel(), LifecycleEventObserver{
+class AuthViewModel : ViewModel(), LifecycleEventObserver {
 
     val isLoginSuccessLiveData = MutableLiveData<Unit>()
     val isLoginFailedLiveData = MutableLiveData<Unit>()
@@ -37,10 +37,5 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver{
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-        when(event){
-            Lifecycle.Event.ON_CREATE->{
-                println("onCreate")
-            }
-        }
     }
 }

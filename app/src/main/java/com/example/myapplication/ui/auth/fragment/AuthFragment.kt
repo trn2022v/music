@@ -40,7 +40,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
 
         buttonLogin = view.findViewById(R.id.button_login)
         buttonReg = view.findViewById(R.id.button_reg)
@@ -63,9 +63,11 @@ class AuthFragment : Fragment() {
             viewModel.onLoginClicked(emailText, passwordText)
         }
         buttonReg.setOnClickListener {
-//            val intent = Intent(context, RegActivity::class.java)
-//            startActivity(intent)
-            (activity as MainActivity).openFragment(RegFragment())
+            (activity as MainActivity).openFragment(
+                RegFragment(),
+                doClearBackStack = true,
+                tag = "RegFragment"
+            )
         }
 
         subscribeOnLiveData()
@@ -73,7 +75,6 @@ class AuthFragment : Fragment() {
     }
 
     private fun restoreValues() {
-
         loginField.editText?.setText(viewModel.emailLifeData.value ?: "")
         passwordField.editText?.setText(viewModel.passwordLifeData.value ?: "")
     }
@@ -81,17 +82,21 @@ class AuthFragment : Fragment() {
 
     private fun subscribeOnLiveData() {
         viewModel.isLoginSuccessLiveData.observe(viewLifecycleOwner) {
-//            val intent = Intent(context, MusicActivity::class.java)
-//            startActivity(intent)
-            (activity as MainActivity).openFragment(MusicFragment())
+            (activity as MainActivity).openFragment(
+                MusicFragment(),
+                doClearBackStack = true,
+                tag = "MusicFragment"
+            )
+        }
 
-        }
         viewModel.isLoginFailedLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Что-то пошло не так", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Неправильный Логин или Пароль", Toast.LENGTH_SHORT).show()
         }
+
         viewModel.showProgressLiveData.observe(viewLifecycleOwner) {
             showProgress()
         }
+
         viewModel.hideProgressLiveData.observe(viewLifecycleOwner) {
             hideProgress()
         }
@@ -107,4 +112,3 @@ class AuthFragment : Fragment() {
         overlay.isVisible = true
     }
 }
-

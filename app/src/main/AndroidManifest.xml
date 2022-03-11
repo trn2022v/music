@@ -19,12 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.reg.activity.RegActivity"
-            android:exported="true"/>
-        <activity
-            android:name=".ui.music.activity.MusicActivity"
-            android:exported="true"/>
     </application>
 
 </manifest>
