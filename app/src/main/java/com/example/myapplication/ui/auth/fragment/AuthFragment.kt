@@ -1,9 +1,12 @@
 package com.example.myapplication.ui.auth.fragment
 
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -18,6 +21,8 @@ import com.example.myapplication.ui.auth.AuthViewModel
 import com.example.myapplication.ui.music.fragment.MusicFragment
 import com.example.myapplication.ui.reg.fragment.RegFragment
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.NonCancellable.start
+import java.time.temporal.ValueRange
 
 class AuthFragment : Fragment() {
     private lateinit var progress: ProgressBar
@@ -65,9 +70,13 @@ class AuthFragment : Fragment() {
         buttonReg.setOnClickListener {
             (activity as MainActivity).openFragment(
                 RegFragment(),
-                doClearBackStack = true,
+                doClearBackStack = false,
                 tag = "RegFragment"
             )
+//            ObjectAnimator.ofFloat(buttonReg, "alpha",0f).apply{
+//                duration = 3000
+//                start()
+//            }
         }
         restoreValues()
         subscribeOnLiveData()
@@ -86,6 +95,7 @@ class AuthFragment : Fragment() {
                 doClearBackStack = true,
                 tag = "MusicFragment"
             )
+
         }
 
         viewModel.isLoginFailedLiveData.observe(viewLifecycleOwner) {

@@ -8,4 +8,5 @@
     <string name="incorrect_login">Неправильный Логин или Пароль</string>
     <string name="reg_password2">Введите пароль еще раз</string>
     <string name="reg_password">Введите пароль</string>
+    <string name="reg_email">Введите Ваш E-mail</string>
 </resources>
