@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        openFragment(AuthFragment(), tag = "AuthFragment")
+        if (savedInstanceState == null) {
+            openFragment(AuthFragment(), tag = "AuthFragment")
+        }
     }
 
     fun openFragment(fragment: Fragment, doClearBackStack: Boolean = false, tag: String? = null) {

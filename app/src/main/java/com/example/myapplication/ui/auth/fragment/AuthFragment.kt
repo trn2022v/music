@@ -20,7 +20,6 @@ import com.example.myapplication.ui.reg.fragment.RegFragment
 import com.google.android.material.textfield.TextInputLayout
 
 class AuthFragment : Fragment() {
-
     private lateinit var progress: ProgressBar
     private lateinit var overlay: FrameLayout
     private lateinit var viewModel: AuthViewModel
@@ -40,14 +39,15 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-
         buttonLogin = view.findViewById(R.id.button_login)
         buttonReg = view.findViewById(R.id.button_reg)
-        loginField = view.findViewById(R.id.input_layout_login)
-        passwordField = view.findViewById(R.id.input_layout_password)
+        loginField = view.findViewById(R.id.input_login)
+        passwordField = view.findViewById(R.id.input_password)
         overlay = view.findViewById(R.id.overlay_container)
         progress = view.findViewById(R.id.progress)
+
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
 
         loginField.editText?.addTextChangedListener {
             viewModel.emailLifeData.value = it.toString()
@@ -69,9 +69,8 @@ class AuthFragment : Fragment() {
                 tag = "RegFragment"
             )
         }
-
-        subscribeOnLiveData()
         restoreValues()
+        subscribeOnLiveData()
     }
 
     private fun restoreValues() {
@@ -90,7 +89,7 @@ class AuthFragment : Fragment() {
         }
 
         viewModel.isLoginFailedLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "Неправильный Логин или Пароль", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.incorrect_login, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.showProgressLiveData.observe(viewLifecycleOwner) {
@@ -102,13 +101,13 @@ class AuthFragment : Fragment() {
         }
     }
 
-    private fun hideProgress() {
-        progress.isVisible = false
-        overlay.isVisible = false
-    }
-
     private fun showProgress() {
         progress.isVisible = true
         overlay.isVisible = true
+    }
+
+    private fun hideProgress() {
+        progress.isVisible = false
+        overlay.isVisible = false
     }
 }
