@@ -1,4 +1,4 @@
-package com.example.myapplication.model.storage
+package com.example.myapplication.data.storage
 
 interface UserStorage {
     fun saveToken(token: String)

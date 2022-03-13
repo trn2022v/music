@@ -6,4 +6,6 @@
     <string name="auth_login">Логин</string>
     <string name="auth_save_credentials">Сохранить логин и пароль</string>
     <string name="incorrect_login">Неправильный Логин или Пароль</string>
+    <string name="reg_password2">Введите пароль еще раз</string>
+    <string name="reg_password">Введите пароль</string>
 </resources>

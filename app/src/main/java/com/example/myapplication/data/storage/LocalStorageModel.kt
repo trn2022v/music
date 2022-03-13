@@ -1,4 +1,4 @@
-package com.example.myapplication.model.storage
+package com.example.myapplication.data.storage
 
 class LocalStorageModel:MusicStorage, UserStorage {
     override fun saveToken(token: String) {

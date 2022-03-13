@@ -2,10 +2,10 @@ package com.example.myapplication.ui.auth
 
 
 import androidx.lifecycle.*
-import com.example.myapplication.model.network.NetworkAuthServiceImpl
-import com.example.myapplication.model.storage.LocalStorageModel
-import com.example.myapplication.model.network.NetworkAuthService
-import com.example.myapplication.model.storage.UserStorage
+import com.example.myapplication.data.network.NetworkAuthServiceImpl
+import com.example.myapplication.data.storage.LocalStorageModel
+import com.example.myapplication.data.network.NetworkAuthService
+import com.example.myapplication.data.storage.UserStorage
 
 class AuthViewModel : ViewModel(), LifecycleEventObserver {
 

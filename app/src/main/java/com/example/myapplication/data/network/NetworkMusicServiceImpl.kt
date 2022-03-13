@@ -1,4 +1,4 @@
-package com.example.myapplication.model.network
+package com.example.myapplication.data.network
 
 class NetworkMusicServiceImpl: NetworkMusicService {
     override fun getFavouriteMusic(): List<Any> {
