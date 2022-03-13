@@ -40,7 +40,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         buttonLogin = view.findViewById(R.id.button_login)
         buttonReg = view.findViewById(R.id.button_reg)
