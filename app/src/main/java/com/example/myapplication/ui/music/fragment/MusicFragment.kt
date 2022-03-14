@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
 import com.example.myapplication.ui.auth.AuthViewModel
 import com.example.myapplication.ui.auth.fragment.AuthFragment
 import com.example.myapplication.ui.music.MusicViewModel
@@ -33,11 +34,21 @@ class MusicFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        logOut = view.findViewById(R.id.button_log_out)
-        viewModel = ViewModelProvider(this)[MusicViewModel::class.java]
 
-        subscribeToLiveData()
+
+        logOut = view.findViewById(R.id.button_log_out)
+
+        viewModel = ViewModelProvider(this)[MusicViewModel::class.java]
+        viewModel.setSharedPreferences(AppPreferencesImpl.getInstance(requireContext()))
+
         setListener()
+        subscribeToLiveData()
+    }
+
+    private fun setListener() {
+        logOut.setOnClickListener {
+            viewModel.logout()
+        }
     }
 
     private fun subscribeToLiveData() {
@@ -48,12 +59,6 @@ class MusicFragment : Fragment() {
                 doClearBackStack = true,
                 "AuthFragment"
             )
-        }
-    }
-
-    private fun setListener() {
-        logOut.setOnClickListener {
-            viewModel.logout()
         }
     }
 }

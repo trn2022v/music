@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -19,8 +20,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            if (AppPreferencesImpl.getInstance(this).getToken().isBlank())
-                openFragment(MusicFragment(), tag = "AuthFragment")
+           val preference = AppPreferencesImpl.getInstance(this)
+            if (preference.getToken().isBlank())
+                openFragment(AuthFragment(), tag = "AuthFragment")
+            Log.d("MainActivity", preference.getToken())
         } else
             openFragment(MusicFragment(), tag = "MusicFragment")
     }
@@ -31,12 +34,12 @@ class MainActivity : AppCompatActivity() {
         }
         supportFragmentManager
             .beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
+//            .setCustomAnimations(
+//                R.anim.slide_in,
+//                R.anim.fade_out,
+//                R.anim.fade_in,
+//                R.anim.slide_out
+//            )
             .replace(R.id.main_fragment_container, fragment, tag)
             .addToBackStack(null)
             .commit()
@@ -57,14 +60,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
-class MyCustomThread : HandlerThread("MyCustomThread") {
-    private var myHandler: Handler? = null
-    override fun run() {
-        super.run()
-        val looper = Looper.myLooper()
-        looper?.let {
-            myHandler = Handler(it)
-        }
-    }
-
-}
+//class MyCustomThread : HandlerThread("MyCustomThread") {
+//    private var myHandler: Handler? = null
+//    override fun run() {
+//        super.run()
+//        val looper = Looper.myLooper()
+//        looper?.let {
+//            myHandler = Handler(it)
+//        }
+//    }
+//
+//}
