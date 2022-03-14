@@ -6,6 +6,7 @@ import com.example.myapplication.data.network.NetworkAuthServiceImpl
 import com.example.myapplication.data.storage.LocalStorageModel
 import com.example.myapplication.data.network.NetworkAuthService
 import com.example.myapplication.data.storage.UserStorage
+import com.example.myapplication.data.storage.preferances.AppPreferences
 
 class AuthViewModel : ViewModel(), LifecycleEventObserver {
 
@@ -16,9 +17,15 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
 
     val emailLifeData = MutableLiveData<String>()
     val passwordLifeData = MutableLiveData<String>()
+    val saveCredentialCheckedLifeData = MutableLiveData<Boolean>()
 
     private val authModel: NetworkAuthService = NetworkAuthServiceImpl()
     private val storageModel: UserStorage = LocalStorageModel()
+    private var preferences: AppPreferences? = null
+
+    fun setSharedPreferences(preferences: AppPreferences) {
+        this.preferences = preferences
+    }
 
 
     fun onLoginClicked(email: String, password: String) {
@@ -28,7 +35,8 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
         showProgressLiveData.postValue(Unit)
 
         if (token != null) {
-            storageModel.saveToken(token)
+            saveToken(token)
+            saveCredentials(email, password)
             isLoginSuccessLiveData.postValue(Unit)
         } else {
             isLoginFailedLiveData.postValue(Unit)
@@ -36,6 +44,56 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
         hideProgressLiveData.postValue(Unit)
     }
 
+    fun setSaveCredentialIsSelected(isSelected: Boolean) {
+        preferences?.setSaveCredentialIsSelected(isSelected)
+
+    }
+
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
     }
+
+    private fun saveCredentials(email: String, password: String) {
+        preferences?.let {
+            if (it.isSaveCredentialSelected()) {
+                it.saveLogin(email)
+                it.savePassword(password)
+            }
+
+        }
+    }
+
+    private fun saveToken(token: String) {
+        preferences?.saveToken(token)
+
+    }
+
+
+    fun fetchStoredData() {
+        preferences?.let {
+            if (it.isSaveCredentialSelected()) {
+                emailLifeData.postValue(it.getLogin())
+                passwordLifeData.postValue(it.getPassword())
+                saveCredentialCheckedLifeData.postValue(true)
+            }
+
+        }
+
+    }
+
+    fun setUpdatedEmail(email: String) {
+        if (email != emailLifeData.value) {
+            emailLifeData.value = email
+
+        }
+    }
+
+    fun setUpdatedPassword(password: String) {
+        if (password != passwordLifeData.value) {
+            passwordLifeData.value = password
+        }
+
+    }
+
+
 }
+

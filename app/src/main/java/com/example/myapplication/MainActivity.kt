@@ -1,10 +1,15 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
 import com.example.myapplication.ui.auth.fragment.AuthFragment
+import com.example.myapplication.ui.music.fragment.MusicFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,8 +19,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            openFragment(AuthFragment(), tag = "AuthFragment")
-        }
+            if (AppPreferencesImpl.getInstance(this).getToken().isBlank())
+                openFragment(MusicFragment(), tag = "AuthFragment")
+        } else
+            openFragment(MusicFragment(), tag = "MusicFragment")
     }
 
     fun openFragment(fragment: Fragment, doClearBackStack: Boolean = false, tag: String? = null) {
@@ -44,8 +51,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun findFragmentByTag(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
+//    fun findFragmentByTag(tag: String): Fragment? = supportFragmentManager.findFragmentByTag(tag)
 
     private fun clearBackStack() =
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+}
+
+class MyCustomThread : HandlerThread("MyCustomThread") {
+    private var myHandler: Handler? = null
+    override fun run() {
+        super.run()
+        val looper = Looper.myLooper()
+        looper?.let {
+            myHandler = Handler(it)
+        }
+    }
+
 }

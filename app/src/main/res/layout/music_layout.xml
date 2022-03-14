@@ -3,14 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
-    <androidx.recyclerview.widget.RecyclerView
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_log_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:text="выйти"
+        android:textColor="@color/black"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="329dp">
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="359dp">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </androidx.appcompat.widget.AppCompatButton>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

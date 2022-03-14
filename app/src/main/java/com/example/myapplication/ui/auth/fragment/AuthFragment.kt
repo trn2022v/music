@@ -1,28 +1,25 @@
 package com.example.myapplication.ui.auth.fragment
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
+import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
 import com.example.myapplication.ui.auth.AuthViewModel
 import com.example.myapplication.ui.music.fragment.MusicFragment
 import com.example.myapplication.ui.reg.fragment.RegFragment
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.coroutines.NonCancellable.start
-import java.time.temporal.ValueRange
 
 class AuthFragment : Fragment() {
     private lateinit var progress: ProgressBar
@@ -32,6 +29,7 @@ class AuthFragment : Fragment() {
     private lateinit var buttonReg: AppCompatButton
     private lateinit var loginField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
+    private lateinit var saveCredentialsCheckBox: AppCompatCheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,16 +48,25 @@ class AuthFragment : Fragment() {
         passwordField = view.findViewById(R.id.input_password)
         overlay = view.findViewById(R.id.overlay_container)
         progress = view.findViewById(R.id.progress)
+        saveCredentialsCheckBox = view.findViewById(R.id.save_credentials_check_box)
+
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        viewModel.setSharedPreferences(AppPreferencesImpl.getInstance(requireContext()))
+        viewModel.fetchStoredData()
 
+        restoreValues()
+        initListeners()
+        subscribeOnLiveData()
+    }
 
+    private fun initListeners() {
         loginField.editText?.addTextChangedListener {
-            viewModel.emailLifeData.value = it.toString()
+            viewModel.setUpdatedEmail(it.toString())
         }
 
         passwordField.editText?.addTextChangedListener {
-            viewModel.passwordLifeData.value = it.toString()
+            viewModel.setUpdatedPassword(it.toString())
         }
 
         buttonLogin.setOnClickListener {
@@ -74,8 +81,11 @@ class AuthFragment : Fragment() {
                 tag = "RegFragment"
             )
         }
-        restoreValues()
-        subscribeOnLiveData()
+        saveCredentialsCheckBox.setOnCheckedChangeListener { _, isSelected ->
+            viewModel.setSaveCredentialIsSelected(
+                isSelected
+            )
+        }
     }
 
     private fun restoreValues() {
@@ -105,6 +115,24 @@ class AuthFragment : Fragment() {
         viewModel.hideProgressLiveData.observe(viewLifecycleOwner) {
             hideProgress()
         }
+        viewModel.saveCredentialCheckedLifeData.observe(
+            viewLifecycleOwner
+        ) { isSelected -> saveCredentialsCheckBox.isChecked = isSelected }
+
+        viewModel.emailLifeData.observe(
+            viewLifecycleOwner
+        ) { email ->
+            loginField.editText?.setText(email)
+            loginField.editText?.setSelection(email.length)
+        }
+
+        viewModel.passwordLifeData.observe(
+            viewLifecycleOwner
+        ) { password ->
+            passwordField.editText?.setText(password)
+            passwordField.editText?.setSelection(password.length)
+        }
+
     }
 
     private fun showProgress() {
