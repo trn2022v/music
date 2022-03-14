@@ -73,10 +73,6 @@ class AuthFragment : Fragment() {
                 doClearBackStack = false,
                 tag = "RegFragment"
             )
-//            ObjectAnimator.ofFloat(buttonReg, "alpha",0f).apply{
-//                duration = 3000
-//                start()
-//            }
         }
         restoreValues()
         subscribeOnLiveData()
