@@ -94,6 +94,5 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
 
     }
 
-
 }
 

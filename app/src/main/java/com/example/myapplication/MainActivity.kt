@@ -20,12 +20,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-           val preference = AppPreferencesImpl.getInstance(this)
-            if (preference.getToken().isBlank())
+            val preference = AppPreferencesImpl.getInstance(this)
+            if (preference.getToken().isBlank()) {
                 openFragment(AuthFragment(), tag = "AuthFragment")
-            Log.d("MainActivity", preference.getToken())
-        } else
-            openFragment(MusicFragment(), tag = "MusicFragment")
+                Log.d("MainActivity", preference.getToken())
+            } else {
+                openFragment(MusicFragment(), tag = "MusicFragment")
+            }
+        }
     }
 
     fun openFragment(fragment: Fragment, doClearBackStack: Boolean = false, tag: String? = null) {
@@ -34,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         }
         supportFragmentManager
             .beginTransaction()
-//            .setCustomAnimations(
-//                R.anim.slide_in,
-//                R.anim.fade_out,
-//                R.anim.fade_in,
-//                R.anim.slide_out
-//            )
+            .setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
             .replace(R.id.main_fragment_container, fragment, tag)
             .addToBackStack(null)
             .commit()
