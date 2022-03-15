@@ -19,7 +19,7 @@ import com.google.android.material.textfield.TextInputLayout
 class RegFragment : Fragment() {
     private lateinit var progress: ProgressBar
     private lateinit var overlay: FrameLayout
-    private lateinit var viewModel: AuthViewModel
+    private lateinit var viewModel: RegViewModel
     private lateinit var buttonReg: AppCompatButton
     private lateinit var emailField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
@@ -43,25 +43,36 @@ class RegFragment : Fragment() {
         overlay = view.findViewById(R.id.overlay_container)
         progress = view.findViewById(R.id.progress)
 
+        viewModel = ViewModelProvider(this)[RegViewModel::class.java]
+
+
 
         emailField.editText?.addTextChangedListener {
-            viewModel.emailLifeData.value = it.toString()
+            viewModel.emailLifeData.value = it.toString().trim()
         }
 
         passwordField.editText?.addTextChangedListener {
-            viewModel.passwordLifeData.value = it.toString()
-
-            passwordField2.editText?.addTextChangedListener {
-                viewModel.passwordLifeData.value = it.toString()
-            }
-            buttonReg.setOnClickListener {
-                (activity as MainActivity).openFragment(
-                    RegFragment(),
-                    doClearBackStack = false,
-                    tag = "RegFragment"
-                )
-            }
-
+            viewModel.passwordLifeData.value = it.toString().trim()
         }
+        passwordField2.editText?.addTextChangedListener {
+            viewModel.passwordLifeData.value = it.toString().trim()
+        }
+        buttonReg.setOnClickListener {
+            (activity as MainActivity).openFragment(
+                RegFragment(),
+                doClearBackStack = false,
+                tag = "RegFragment"
+            )
+        }
+
     }
+//        restoreValues()
 }
+
+
+//    private fun restoreValues() {
+//        emailField.editText?.setText(viewModel.emailLifeData.value ?: "")
+//        passwordField.editText?.setText(viewModel.passwordLifeData.value ?: "")
+//        passwordField2.editText?.setText(viewModel.passwordLifeData.value ?: "")
+//    }
+

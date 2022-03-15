@@ -1,6 +1,9 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -57,14 +60,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
-//class MyCustomThread : HandlerThread("MyCustomThread") {
-//    private var myHandler: Handler? = null
-//    override fun run() {
-//        super.run()
-//        val looper = Looper.myLooper()
-//        looper?.let {
-//            myHandler = Handler(it)
-//        }
-//    }
-//
-//}
+class MyCustomThread : HandlerThread("MyCustomThread") {
+    private var myHandler: Handler? = null
+    override fun run() {
+        super.run()
+        val looper = Looper.myLooper()
+        looper?.let {
+            myHandler = Handler(it)
+        }
+    }
+
+}
