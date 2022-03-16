@@ -64,15 +64,15 @@ class RegFragment : Fragment() {
                 tag = "RegFragment"
             )
         }
-
+        restoreValues()
     }
-//        restoreValues()
+    private fun restoreValues() {
+        emailField.editText?.setText(viewModel.emailLifeData.value ?: "")
+        passwordField.editText?.setText(viewModel.passwordLifeData.value ?: "")
+        passwordField2.editText?.setText(viewModel.passwordLifeData.value ?: "")
+    }
+
 }
 
 
-//    private fun restoreValues() {
-//        emailField.editText?.setText(viewModel.emailLifeData.value ?: "")
-//        passwordField.editText?.setText(viewModel.passwordLifeData.value ?: "")
-//        passwordField2.editText?.setText(viewModel.passwordLifeData.value ?: "")
-//    }
 
