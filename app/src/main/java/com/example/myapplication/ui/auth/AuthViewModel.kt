@@ -2,9 +2,9 @@ package com.example.myapplication.ui.auth
 
 
 import androidx.lifecycle.*
-import com.example.myapplication.data.network.NetworkAuthServiceImpl
+import com.example.myapplication.data.network.service.auth.NetworkAuthServiceImpl
 import com.example.myapplication.data.storage.LocalStorageModel
-import com.example.myapplication.data.network.NetworkAuthService
+import com.example.myapplication.data.network.service.auth.NetworkAuthService
 import com.example.myapplication.data.storage.UserStorage
 import com.example.myapplication.data.storage.preferances.AppPreferences
 
@@ -20,7 +20,7 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
     val saveCredentialCheckedLifeData = MutableLiveData<Boolean>()
 
     private val authModel: NetworkAuthService = NetworkAuthServiceImpl()
-    private val storageModel: UserStorage = LocalStorageModel()
+//    private val storageModel: UserStorage = LocalStorageModel()
     private var preferences: AppPreferences? = null
 
     fun setSharedPreferences(preferences: AppPreferences) {

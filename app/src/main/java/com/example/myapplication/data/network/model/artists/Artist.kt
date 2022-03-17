@@ -1,4 +1,4 @@
-package com.example.myapplication.data.network.model
+package com.example.myapplication.data.network.model.artists
 
 import com.google.gson.annotations.SerializedName
 

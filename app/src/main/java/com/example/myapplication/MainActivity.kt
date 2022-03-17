@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         if (savedInstanceState == null) {
             if (AppPreferencesImpl.getInstance(this).getToken().isBlank()) {
                 openFragment(AuthFragment(), tag = "AuthFragment")

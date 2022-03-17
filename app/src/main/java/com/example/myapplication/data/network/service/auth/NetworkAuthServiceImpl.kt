@@ -1,4 +1,4 @@
-package com.example.myapplication.data.network
+package com.example.myapplication.data.network.service.auth
 
 class NetworkAuthServiceImpl : NetworkAuthService {
     override fun onLoginClicked(email: String, password: String): String? {
