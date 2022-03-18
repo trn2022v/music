@@ -15,6 +15,7 @@ import com.example.myapplication.data.network.service.artists.LastFMNetwork
 import com.example.myapplication.data.network.service.artists.LastFMNetworkImpl
 import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
 import com.example.myapplication.ui.auth.fragment.AuthFragment
+import com.example.myapplication.ui.music.AlbumsAdapter
 import com.example.myapplication.ui.music.ArtistsAdapter
 import com.example.myapplication.ui.music.ArtistsRecyclerItemDecoration
 import com.example.myapplication.ui.music.MusicViewModel
@@ -24,6 +25,7 @@ class MusicFragment : Fragment() {
     private lateinit var viewModel: MusicViewModel
     private lateinit var logOut: AppCompatButton
     private lateinit var recyclerArtists: RecyclerView
+    private lateinit var recyclerAlbums: RecyclerView
 
 
     override fun onCreateView(
@@ -42,14 +44,19 @@ class MusicFragment : Fragment() {
         logOut = view.findViewById(R.id.button_log_out)
 
         val lastFMNetwork = LastFMNetworkImpl.getInstance() as LastFMNetwork
+
         viewModel.setArtistService(lastFMNetwork.getArtistsService())
+        viewModel.setAlbumsService(lastFMNetwork.getAlbumsService())
 
         lifecycle.addObserver(viewModel)
 
-
+        recyclerAlbums = view.findViewById(R.id.recycler_albums)
+        recyclerAlbums.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerAlbums.addItemDecoration(ArtistsRecyclerItemDecoration(16))
         recyclerArtists = view.findViewById(R.id.recycler_artists)
         recyclerArtists.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerArtists.addItemDecoration(ArtistsRecyclerItemDecoration(16))
 
         viewModel.setSharedPreferences(AppPreferencesImpl.getInstance(requireContext()))
@@ -69,7 +76,13 @@ class MusicFragment : Fragment() {
 
         viewModel.artistsLiveData.observe(viewLifecycleOwner) { artists ->
             recyclerArtists.adapter = ArtistsAdapter(artists) { artist ->
-                println(artist) }
+                println(artist)
+            }
+        }
+        viewModel.albumsLiveData.observe(viewLifecycleOwner) { albums ->
+            recyclerAlbums.adapter = AlbumsAdapter(albums) { album ->
+                println(album)
+            }
         }
 
         viewModel.logoutLiveData.observe(viewLifecycleOwner) {
