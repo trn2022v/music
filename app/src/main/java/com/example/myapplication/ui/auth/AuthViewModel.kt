@@ -20,7 +20,8 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
     val saveCredentialCheckedLifeData = MutableLiveData<Boolean>()
 
     private val authModel: NetworkAuthService = NetworkAuthServiceImpl()
-//    private val storageModel: UserStorage = LocalStorageModel()
+
+    //    private val storageModel: UserStorage = LocalStorageModel()
     private var preferences: AppPreferences? = null
 
     fun setSharedPreferences(preferences: AppPreferences) {

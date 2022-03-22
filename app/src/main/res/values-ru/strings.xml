@@ -10,4 +10,7 @@
     <string name="reg_password">Введите пароль</string>
     <string name="reg_email">Введите Ваш E-mail</string>
     <string name="logout_btn">Выйти</string>
+    <string name="album_btn">Альбомы</string>
+    <string name="artist_btn">Артисты</string>
+    <string name="hello_blank_fragment">привет пустой фрагмент</string>
 </resources>

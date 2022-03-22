@@ -3,7 +3,7 @@ package com.example.myapplication.data.storage.preferances
 import android.content.Context
 import android.content.SharedPreferences
 
-class AppPreferencesImpl private constructor() : AppPreferences {
+class AppPreferencesImpl() : AppPreferences {
 
 
     companion object {

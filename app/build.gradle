@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def roomVersion = "2.4.2"
 
 
@@ -54,10 +55,14 @@ dependencies {
     //  Glide
     implementation 'com.github.bumptech.glide:glide:4.13.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
-    // Room
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
+    // Navigation Component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    // Room components
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    androidTestImplementation "androidx.room:room-testing:2.4.2"
     //  Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -65,6 +70,13 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.5'
     //  Work manager
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:3.1.5"
+    // Koin Test features
+    testImplementation "io.insert-koin:koin-test:3.1.5"
+
+
+
 //
 ////  Location
 //    implementation 'com.google.android.gms:play-services-location:19.0.1'

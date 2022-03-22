@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.music
 
-import Albums
 import androidx.lifecycle.*
 import com.example.myapplication.data.network.model.albums.Album
 import com.example.myapplication.data.network.model.artists.Artist

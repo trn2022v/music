@@ -24,6 +24,8 @@ class MusicFragment : Fragment() {
 
     private lateinit var viewModel: MusicViewModel
     private lateinit var logOut: AppCompatButton
+    private lateinit var albumBtn: AppCompatButton
+    private lateinit var artistBtn: AppCompatButton
     private lateinit var recyclerArtists: RecyclerView
     private lateinit var recyclerAlbums: RecyclerView
 
@@ -42,24 +44,32 @@ class MusicFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MusicViewModel::class.java]
         logOut = view.findViewById(R.id.button_log_out)
+        albumBtn = view.findViewById(R.id.button_album)
+        artistBtn = view.findViewById(R.id.button_artist)
 
         val lastFMNetwork = LastFMNetworkImpl.getInstance() as LastFMNetwork
 
         viewModel.setArtistService(lastFMNetwork.getArtistsService())
         viewModel.setAlbumsService(lastFMNetwork.getAlbumsService())
+        viewModel.setSharedPreferences(AppPreferencesImpl.getInstance(requireContext()))
 
         lifecycle.addObserver(viewModel)
 
         recyclerAlbums = view.findViewById(R.id.recycler_albums)
+        recyclerArtists = view.findViewById(R.id.recycler_artists)
+
+
         recyclerAlbums.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerAlbums.addItemDecoration(ArtistsRecyclerItemDecoration(16))
-        recyclerArtists = view.findViewById(R.id.recycler_artists)
+
+
+
         recyclerArtists.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerArtists.addItemDecoration(ArtistsRecyclerItemDecoration(16))
 
-        viewModel.setSharedPreferences(AppPreferencesImpl.getInstance(requireContext()))
+
 
 //        ArtistsAdapter()
         setListener()
@@ -70,6 +80,17 @@ class MusicFragment : Fragment() {
         logOut.setOnClickListener {
             viewModel.logout()
         }
+//        albumBtn.setOnClickListener {
+//            recyclerAlbums.layoutManager =
+//                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//            recyclerAlbums.addItemDecoration(ArtistsRecyclerItemDecoration(16))
+//        }
+//        artistBtn.setOnClickListener {
+//            recyclerArtists.layoutManager =
+//                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//            recyclerArtists.addItemDecoration(ArtistsRecyclerItemDecoration(16))
+//
+//        }
     }
 
     private fun subscribeToLiveData() {

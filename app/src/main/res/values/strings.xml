@@ -10,4 +10,8 @@
     <string name="reg_password_again">Enter the password again</string>
     <string name="reg_email">Enter your e-mail</string>
     <string name="logout_btn">logout</string>
+    <string name="album_btn">Albums</string>
+    <string name="artist_btn">Artist</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
