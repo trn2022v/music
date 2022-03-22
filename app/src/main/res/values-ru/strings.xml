@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">PortfolioProject</string>
     <string name="auth_login_button">Войти</string>
     <string name="auth_reg_button">Регистрация</string>
     <string name="auth_password">Пароль</string>

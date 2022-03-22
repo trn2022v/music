@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.ui.auth.AuthViewModel
+import com.example.myapplication.ui.auth.fragment.AuthFragment
 import com.example.myapplication.ui.reg.RegViewModel
 import com.google.android.material.textfield.TextInputLayout
 
@@ -59,7 +60,7 @@ class RegFragment : Fragment() {
         }
         buttonReg.setOnClickListener {
             (activity as MainActivity).openFragment(
-                RegFragment(),
+                AuthFragment(),
                 doClearBackStack = false,
                 tag = "RegFragment"
             )

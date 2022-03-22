@@ -18,9 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         if (savedInstanceState == null) {
+
             if (AppPreferencesImpl.getInstance(this).getToken().isBlank()) {
                 openFragment(AuthFragment(), tag = "AuthFragment")
 
@@ -31,20 +30,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun openFragment(fragment: Fragment, doClearBackStack: Boolean = false, tag: String? = null) {
-        if (doClearBackStack) {
-            clearBackStack()
-        }
-        supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
-            .replace(R.id.main_fragment_container, fragment, tag)
-            .addToBackStack(null)
-            .commit()
+        Handler(Looper.myLooper()!!).postDelayed({
+            if (doClearBackStack) {
+                clearBackStack()
+            }
+            supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.slide_out
+                )
+                .replace(R.id.main_fragment_container, fragment, tag)
+                .addToBackStack(null)
+                .commit()
+        }, 300)
+
     }
 
     override fun onBackPressed() {
@@ -62,14 +64,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 }
 
-class MyCustomThread : HandlerThread("MyCustomThread") {
-    private var myHandler: Handler? = null
-    override fun run() {
-        super.run()
-        val looper = Looper.myLooper()
-        looper?.let {
-            myHandler = Handler(it)
-        }
-    }
-
-}
+//class MyCustomThread : HandlerThread("MyCustomThread") {
+//    private var myHandler: Handler? = null
+//    override fun run() {
+//        super.run()
+//        val looper = Looper.myLooper()
+//        looper?.let {
+//            myHandler = Handler(it)
+//        }
+//    }
+//
+//}
