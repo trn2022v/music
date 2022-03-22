@@ -12,5 +12,5 @@
     <string name="logout_btn">Выйти</string>
     <string name="album_btn">Альбомы</string>
     <string name="artist_btn">Артисты</string>
-    <string name="hello_blank_fragment">привет пустой фрагмент</string>
+    <string name="reg_button_text">Нет аккаунта? Зарегистрируйтесь.</string>
 </resources>

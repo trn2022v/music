@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.reg.fragment
+package com.example.myapplication.ui.auth.sign_up.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,11 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import com.example.myapplication.ui.auth.AuthViewModel
-import com.example.myapplication.ui.auth.fragment.AuthFragment
-import com.example.myapplication.ui.reg.RegViewModel
+import com.example.myapplication.ui.auth.sign_in.fragment.AuthFragment
+import com.example.myapplication.ui.auth.sign_up.RegViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 class RegFragment : Fragment() {
@@ -59,11 +59,7 @@ class RegFragment : Fragment() {
             viewModel.passwordLifeData.value = it.toString().trim()
         }
         buttonReg.setOnClickListener {
-            (activity as MainActivity).openFragment(
-                AuthFragment(),
-                doClearBackStack = false,
-                tag = "RegFragment"
-            )
+            this.findNavController().navigate(R.id.action_regFragment_to_musicFragment)
         }
         restoreValues()
     }

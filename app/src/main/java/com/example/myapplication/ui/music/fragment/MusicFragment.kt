@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.MainActivity
@@ -14,7 +15,7 @@ import com.example.myapplication.R
 import com.example.myapplication.data.network.service.artists.LastFMNetwork
 import com.example.myapplication.data.network.service.artists.LastFMNetworkImpl
 import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
-import com.example.myapplication.ui.auth.fragment.AuthFragment
+import com.example.myapplication.ui.auth.sign_in.fragment.AuthFragment
 import com.example.myapplication.ui.music.AlbumsAdapter
 import com.example.myapplication.ui.music.ArtistsAdapter
 import com.example.myapplication.ui.music.ArtistsRecyclerItemDecoration
@@ -107,11 +108,7 @@ class MusicFragment : Fragment() {
         }
 
         viewModel.logoutLiveData.observe(viewLifecycleOwner) {
-            (activity as MainActivity).openFragment(
-                AuthFragment(),
-                doClearBackStack = true,
-                "AuthFragment"
-            )
+            this.findNavController().navigate(R.id.action_musicFragment_to_authFragment2)
         }
     }
 }

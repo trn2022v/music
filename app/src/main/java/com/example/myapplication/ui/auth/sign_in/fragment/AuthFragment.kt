@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.auth.fragment
+package com.example.myapplication.ui.auth.sign_in.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,24 +9,28 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
-import com.example.myapplication.ui.auth.AuthViewModel
+import com.example.myapplication.ui.auth.sign_in.AuthViewModel
 import com.example.myapplication.ui.music.fragment.MusicFragment
-import com.example.myapplication.ui.reg.fragment.RegFragment
+import com.example.myapplication.ui.auth.sign_up.fragment.RegFragment
 import com.google.android.material.textfield.TextInputLayout
 
 class AuthFragment : Fragment() {
+
     private lateinit var progress: ProgressBar
     private lateinit var overlay: FrameLayout
     private lateinit var viewModel: AuthViewModel
     private lateinit var buttonLogin: AppCompatButton
-    private lateinit var buttonReg: AppCompatButton
+    private lateinit var buttonReg: AppCompatTextView
     private lateinit var loginField: TextInputLayout
     private lateinit var passwordField: TextInputLayout
     private lateinit var saveCredentialsCheckBox: AppCompatCheckBox
@@ -75,11 +79,7 @@ class AuthFragment : Fragment() {
             viewModel.onLoginClicked(emailText, passwordText)
         }
         buttonReg.setOnClickListener {
-            (activity as MainActivity).openFragment(
-                RegFragment(),
-                doClearBackStack = false,
-                tag = "RegFragment"
-            )
+            this.findNavController().navigate(R.id.action_authFragment2_to_regFragment)
         }
         saveCredentialsCheckBox.setOnCheckedChangeListener { _, isSelected ->
             viewModel.setSaveCredentialIsSelected(
@@ -96,12 +96,7 @@ class AuthFragment : Fragment() {
 
     private fun subscribeOnLiveData() {
         viewModel.isLoginSuccessLiveData.observe(viewLifecycleOwner) {
-            (activity as MainActivity).openFragment(
-                MusicFragment(),
-                doClearBackStack = true,
-                tag = "MusicFragment"
-            )
-
+            this.findNavController().navigate(R.id.action_authFragment2_to_musicFragment)
         }
 
         viewModel.isLoginFailedLiveData.observe(viewLifecycleOwner) {

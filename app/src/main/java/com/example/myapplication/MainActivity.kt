@@ -2,14 +2,10 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.myapplication.data.storage.preferances.AppPreferencesImpl
-import com.example.myapplication.ui.auth.fragment.AuthFragment
-import com.example.myapplication.ui.music.fragment.MusicFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-
-            if (AppPreferencesImpl.getInstance(this).getToken().isBlank()) {
-                openFragment(AuthFragment(), tag = "AuthFragment")
-
-            } else {
-                openFragment(MusicFragment(), tag = "MusicFragment")
-            }
-        }
+//        if (savedInstanceState == null) {
+//
+//            if (AppPreferencesImpl.getInstance(this).getToken().isBlank()) {
+//                openFragment(AuthFragment(), tag = "AuthFragment")
+//
+//            } else {
+//                openFragment(MusicFragment(), tag = "MusicFragment")
+//            }
+//        }
     }
 
     fun openFragment(fragment: Fragment, doClearBackStack: Boolean = false, tag: String? = null) {

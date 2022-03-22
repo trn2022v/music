@@ -1,6 +1,7 @@
 package com.example.myapplication.data.network.service.auth
 
 class NetworkAuthServiceImpl : NetworkAuthService {
+
     override fun onLoginClicked(email: String, password: String): String? {
         val isEmailValid =
             email.isNotBlank() && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()

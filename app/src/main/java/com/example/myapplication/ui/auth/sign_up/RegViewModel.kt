@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.reg
+package com.example.myapplication.ui.auth.sign_up
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

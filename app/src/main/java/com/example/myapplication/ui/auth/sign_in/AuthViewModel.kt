@@ -1,11 +1,9 @@
-package com.example.myapplication.ui.auth
+package com.example.myapplication.ui.auth.sign_in
 
 
 import androidx.lifecycle.*
 import com.example.myapplication.data.network.service.auth.NetworkAuthServiceImpl
-import com.example.myapplication.data.storage.LocalStorageModel
 import com.example.myapplication.data.network.service.auth.NetworkAuthService
-import com.example.myapplication.data.storage.UserStorage
 import com.example.myapplication.data.storage.preferances.AppPreferences
 
 class AuthViewModel : ViewModel(), LifecycleEventObserver {
