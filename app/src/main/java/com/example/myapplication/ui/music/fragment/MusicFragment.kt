@@ -72,7 +72,6 @@ class MusicFragment : Fragment() {
 
 
 
-//        ArtistsAdapter()
         setListener()
         subscribeToLiveData()
     }

@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myapplication.data.storage.room.entity.User
+import com.example.myapplication.data.storage.room.entity.UserEntity
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [UserEntity::class], version = 1)
 abstract class UserDatabase : RoomDatabase(), UserDao {
 
     companion object{

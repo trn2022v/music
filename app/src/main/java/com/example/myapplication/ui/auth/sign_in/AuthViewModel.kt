@@ -2,8 +2,8 @@ package com.example.myapplication.ui.auth.sign_in
 
 
 import androidx.lifecycle.*
-import com.example.myapplication.data.network.service.auth.NetworkAuthServiceImpl
-import com.example.myapplication.data.network.service.auth.NetworkAuthService
+import com.example.myapplication.data.local.auth.LocalAuthDataSource
+import com.example.myapplication.data.local.auth.LocalAuthDataSourceI
 import com.example.myapplication.data.storage.preferances.AppPreferences
 
 class AuthViewModel : ViewModel(), LifecycleEventObserver {
@@ -17,7 +17,7 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
     val passwordLifeData = MutableLiveData<String>()
     val saveCredentialCheckedLifeData = MutableLiveData<Boolean>()
 
-    private val authModel: NetworkAuthService = NetworkAuthServiceImpl()
+    private val authModel: LocalAuthDataSourceI = LocalAuthDataSource()
 
     //    private val storageModel: UserStorage = LocalStorageModel()
     private var preferences: AppPreferences? = null
@@ -29,7 +29,7 @@ class AuthViewModel : ViewModel(), LifecycleEventObserver {
 
     fun onLoginClicked(email: String, password: String) {
 
-        val token = authModel.onLoginClicked(email, password)
+        val token = authModel.onSingIn(email, password)
 
         showProgressLiveData.postValue(Unit)
 
