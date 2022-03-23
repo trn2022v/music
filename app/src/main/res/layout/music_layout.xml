@@ -10,41 +10,38 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_artists"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/recycler_albums"
+        android:layout_width="163dp"
+        android:layout_height="648dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_artist"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
+        app:layout_constraintVertical_bias="0.854" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_albums"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/button_artist"
+        android:layout_width="163dp"
+        android:layout_height="648dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_album"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
+        app:layout_constraintVertical_bias="0.854" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_log_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
-        android:text="@string/logout_btn"
-        android:textColor="@color/black"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="74dp"
+        android:src="@android:drawable/ic_menu_my_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </androidx.appcompat.widget.AppCompatButton>
+        app:layout_constraintVertical_bias="0.046" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_album"
@@ -67,7 +64,7 @@
         android:id="@+id/button_artist"
         android:layout_width="163dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorAccent"
         android:text="@string/artist_btn"

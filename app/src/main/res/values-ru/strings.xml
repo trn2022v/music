@@ -13,4 +13,5 @@
     <string name="album_btn">Альбомы</string>
     <string name="artist_btn">Артисты</string>
     <string name="reg_button_text">Нет аккаунта? Зарегистрируйтесь.</string>
+    <string name="return_button">Назад</string>
 </resources>

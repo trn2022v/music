@@ -37,5 +37,20 @@
             android:id="@+id/action_musicFragment_to_authFragment2"
             app:destination="@id/authFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_musicFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.myapplication.ui.profile.fragment.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_musicFragment"
+            app:destination="@id/musicFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_authFragment"
+            app:destination="@id/authFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
