@@ -30,10 +30,7 @@ class MusicViewModel : ViewModel(), LifecycleEventObserver {
         this.albumsService = service
     }
 
-    fun logout() {
-        preferences?.saveToken("")
-        logoutLiveData.value = Unit
-    }
+
 
     fun setSharedPreferences(preferences: AppPreferences) {
         this.preferences = preferences
@@ -41,13 +38,10 @@ class MusicViewModel : ViewModel(), LifecycleEventObserver {
 
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-//        when (event) {
-//            Lifecycle.Event.ON_CREATE -> {
+
                 getArtists()
                 getAlbums()
 
-//            }
-//        }
     }
 
 

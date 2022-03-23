@@ -60,13 +60,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="authFragment2">
+                  <entry key="authFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-392" />
-                            <option name="y" value="-111" />
+                            <option name="x" value="-620" />
+                            <option name="y" value="-333" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -91,13 +91,44 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="2" />
-                            <option name="y" value="-6" />
+                            <option name="x" value="-304" />
+                            <option name="y" value="-82" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_musicFragment_to_authFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_musicFragment_to_profileFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="profileFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-119" />
+                            <option name="y" value="-416" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_profileFragment_to_authFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_profileFragment_to_musicFragment">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -112,8 +143,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-396" />
-                            <option name="y" value="190" />
+                            <option name="x" value="-614" />
+                            <option name="y" value="48" />
                           </Point>
                         </option>
                         <option name="myPositions">

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -24,7 +25,7 @@ import com.example.myapplication.ui.music.MusicViewModel
 class MusicFragment : Fragment() {
 
     private lateinit var viewModel: MusicViewModel
-    private lateinit var logOut: AppCompatButton
+    private lateinit var profile: ImageButton
     private lateinit var albumBtn: AppCompatButton
     private lateinit var artistBtn: AppCompatButton
     private lateinit var recyclerArtists: RecyclerView
@@ -37,14 +38,13 @@ class MusicFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.music_layout, container, false)
-
-
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[MusicViewModel::class.java]
-        logOut = view.findViewById(R.id.button_log_out)
+        profile = view.findViewById(R.id.profile)
         albumBtn = view.findViewById(R.id.button_album)
         artistBtn = view.findViewById(R.id.button_artist)
 
@@ -61,37 +61,25 @@ class MusicFragment : Fragment() {
 
 
         recyclerAlbums.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerAlbums.addItemDecoration(ArtistsRecyclerItemDecoration(16))
 
 
 
         recyclerArtists.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerArtists.addItemDecoration(ArtistsRecyclerItemDecoration(16))
 
 
-
-//        ArtistsAdapter()
         setListener()
         subscribeToLiveData()
     }
 
     private fun setListener() {
-        logOut.setOnClickListener {
-            viewModel.logout()
+        profile.setOnClickListener {
+            this.findNavController().navigate(R.id.action_musicFragment_to_profileFragment)
         }
-//        albumBtn.setOnClickListener {
-//            recyclerAlbums.layoutManager =
-//                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//            recyclerAlbums.addItemDecoration(ArtistsRecyclerItemDecoration(16))
-//        }
-//        artistBtn.setOnClickListener {
-//            recyclerArtists.layoutManager =
-//                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//            recyclerArtists.addItemDecoration(ArtistsRecyclerItemDecoration(16))
-//
-//        }
+
     }
 
     private fun subscribeToLiveData() {
