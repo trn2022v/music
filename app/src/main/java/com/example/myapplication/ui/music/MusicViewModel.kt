@@ -31,7 +31,7 @@ class MusicViewModel : ViewModel(), LifecycleEventObserver {
     }
 
     fun logout() {
-        preferences?.saveToken("")
+        preferences?.saveUserToken("")
         logoutLiveData.value = Unit
     }
 

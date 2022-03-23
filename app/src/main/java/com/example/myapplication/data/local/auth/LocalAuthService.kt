@@ -1,6 +1,6 @@
-package com.example.myapplication.data.network.service.auth
+package com.example.myapplication.data.local.auth
 
-class NetworkAuthServiceImpl : NetworkAuthService {
+class LocalAuthService : LocalAuthServiceI {
 
     override fun onLoginClicked(email: String, password: String): String? {
         val isEmailValid =
