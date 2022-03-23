@@ -17,6 +17,7 @@ interface AlbumsService {
     @GET("$BASE_PATH/")
     suspend fun getTopAlbums(
         @Query("method") method: String = KEY_METHOD,
+        @Query("limit") limit: Int = 10,
         @Query("tag") tag: String = TAG,
         @Query("api_key") apiKey: String = KEY_API_KEY,
         @Query("format") format: String = KEY_FORMAT,
