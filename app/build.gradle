@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -74,23 +74,12 @@ dependencies {
     implementation "io.insert-koin:koin-core:3.1.5"
     // Koin Test features
     testImplementation "io.insert-koin:koin-test:3.1.5"
+    //  Hilt
+    implementation 'com.google.dagger:hilt-android:2.41'
+    kapt 'com.google.dagger:hilt-compiler:2.41'
 
 
-
-//
-////  Location
-//    implementation 'com.google.android.gms:play-services-location:19.0.1'
-//
-////  Google maps
-//    implementation 'com.google.android.gms:play-services-maps:18.0.2'
-//
-////  RxJava3
-//    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-//    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-//    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
-//
-////  Hilt
-//    implementation 'com.google.dagger:hilt-android:2.41'
-//    kapt 'com.google.dagger:hilt-compiler:2.41'
-
+}
+kapt {
+    correctErrorTypes = true
 }
