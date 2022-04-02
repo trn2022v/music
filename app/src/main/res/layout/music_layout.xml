@@ -11,7 +11,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_artists"
         android:layout_width="163dp"
-        android:layout_height="648dp"
+        android:layout_height="690dp"
         app:layout_constraintBottom_toTopOf="@+id/button_artist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.859"
@@ -22,7 +22,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_albums"
         android:layout_width="163dp"
-        android:layout_height="648dp"
+        android:layout_height="690dp"
         app:layout_constraintBottom_toTopOf="@+id/button_album"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
