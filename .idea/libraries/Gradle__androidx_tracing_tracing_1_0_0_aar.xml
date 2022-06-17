@@ -3,9 +3,10 @@
     <CLASSES>
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7733db7ffdb871c444668384a7ee5a00/transformed/jetified-tracing-1.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7fb22b2785e62309d729de17038b6712/transformed/jetified-tracing-1.0.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/06186d3837b5b2d574f4d1efea414292/transformed/jetified-tracing-1.0.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/06186d3837b5b2d574f4d1efea414292/transformed/jetified-tracing-1.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/06186d3837b5b2d574f4d1efea414292/transformed/jetified-tracing-1.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb7b5a87f616e5e1599ca865f754fdcf/transformed/jetified-tracing-1.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cb7b5a87f616e5e1599ca865f754fdcf/transformed/jetified-tracing-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cb7b5a87f616e5e1599ca865f754fdcf/transformed/jetified-tracing-1.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
