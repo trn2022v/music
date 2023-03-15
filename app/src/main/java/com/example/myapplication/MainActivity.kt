@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val fragmentCount = supportFragmentManager.backStackEntryCount
         if (fragmentCount > 1) {
